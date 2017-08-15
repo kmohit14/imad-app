@@ -5,19 +5,51 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-    title: 'Article One | Mohit K',
-    heading: 'Article One',
-    date: 'August 15, 2017',
-    content: `  <p>
-                    This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
-                </p>
-                <p>
-                    This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
-                </p>
-                <p>
-                    This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
-                </p>`
+var articles = {
+    
+    'article-one': {
+        title: 'Article One | Mohit K',
+        heading: 'Article One',
+        date: 'August 15, 2017',
+        content: `  <p>
+                        This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
+                    </p>
+                    <p>
+                        This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
+                    </p>
+                    <p>
+                        This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article.. This is 1st Article..
+                    </p>`
+    },
+    'article-two': {
+        title: 'Article Two | Mohit K',
+        heading: 'Article Two',
+        date: 'August 15, 2017',
+        content: `  <p>
+                        This is 2nd Article.. This is 2nd Article.. This is 2nd Article..
+                    </p>
+                    <p>
+                        This is 2nd Article.. This is 2nd Article.. This is 2nd Article.. 
+                    </p>
+                    <p>
+                        This is 2nd Article.. This is 2nd Article.. This is 2nd Article.. 
+                    </p>`
+    },
+    'article-three': {
+         title: 'Article Three | Mohit K',
+        heading: 'Article Three',
+        date: 'August 15, 2017',
+        content: `  <p>
+                        This is 3rd Article.. This is 3rd Article.. This is 3rd Article..
+                    </p>
+                    <p>
+                        This is 3rd Article.. This is 3rd Article.. This is 3rd Article.. 
+                    </p>
+                    <p>
+                        This is 3rd Article.. This is 3rd Article.. This is 3rd Article.. 
+                    </p>`
+    }
+    
 };
 
 function createTemplate (data){
@@ -74,16 +106,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req,res){
-    res.send(createTemplate(articleOne));
-});
-
-app.get('/article-two', function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+app.get('/:articleName', function(req,res){
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/ui/style.css', function (req, res) {
