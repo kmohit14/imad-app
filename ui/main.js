@@ -6,6 +6,6 @@ element.innerHTML = 'Hello, I am Mohit K...!!';
 
 //Move image on click
 var img = document.getElementById('madi');
-img.onclick = function(){
+img.onclick = function() {
     img.style.marginLeft = '150px';
 };
