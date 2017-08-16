@@ -8,7 +8,7 @@ element.innerHTML = 'Hello, I am Mohit K...!!';
 var img = document.getElementById('madi');
 var marginLeft = 0;
 function moveRight(){
-    marginLeft = marginLeft + 1;
+    marginLeft = marginLeft + 5;
     img.style.marginLeft = marginLeft + 'px';
 }
 img.onclick = function() {
